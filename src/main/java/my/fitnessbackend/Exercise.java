@@ -21,8 +21,8 @@ public class Exercise {
     private String name;
 
 
-    @Column(name = "muscle", nullable = false)
-    private String muscle;
+    @Column(name = "muscle_group", nullable = false)
+    private String muscleGroup;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -35,11 +35,11 @@ public class Exercise {
 
     public Exercise(
             String name,
-            String muscle,
+            String muscleGroup,
             String description,
             String difficulty) {
         this.name = name;
-        this.muscle = muscle;
+        this.muscleGroup = muscleGroup;
         this.description = description;
         this.difficulty = difficulty;
 
