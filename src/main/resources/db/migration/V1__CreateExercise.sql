@@ -8,5 +8,5 @@ CREATE TABLE exercise
 );
 
 INSERT INTO exercise (name, description, difficulty,  muscle_group)
-VALUES ('Bench press', 'just do it with your heart', 'hard',  'chest'),
-       ('Squat', 'do it!', 'hard',  'legs');
+VALUES ('Bench press', 'just do it with your heart', 'Hard',  'chest'),
+       ('Squat', 'do it!', 'Hard',  'legs');

@@ -1,12 +1,13 @@
 package my.fitnessbackend;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping
+@Slf4j
 public class Controller {
 
     ExerciseRepository exerciseRepository;
@@ -21,7 +22,11 @@ public class Controller {
                 + "<br>"
                 + "to get all Exercises:  /allExercises"
                 + "<br>"
-                + "to post new Exercise: /newExercise";
+                + "to post new Exercise: /newExercise"
+                + "<br>"
+                + "to delete an Exercise: /delete{id}"
+                + "<br>"
+                + "to put Exercise: /edit{id]";
     }
 
     @GetMapping(path = "allExercises")
@@ -40,10 +45,14 @@ public class Controller {
     }
 
     @PutMapping(path = "edit{exerciseId}")
-    public void updateExercise(@PathVariable(value = "exerciseId") Long exerciseId, @RequestParam(required = false) String name) {
-        Optional<Exercise> exercise = exerciseRepository.findById(exerciseId);
-        Exercise exerciseObject = exercise.get();
-        exerciseObject.setName(name);
-        exerciseRepository.save(exerciseObject);
+    public void updateExercise(@PathVariable(value = "exerciseId") Long exerciseId, @RequestBody Exercise newExercise) {
+        Exercise exercise = exerciseRepository.findById(exerciseId).get();
+        log.info(String.valueOf(exercise));
+
+        exercise.setName(newExercise.getName());
+        exercise.setDifficulty(newExercise.getDifficulty());
+        exercise.setDescription(newExercise.getDescription());
+        exercise.setMuscleGroup(newExercise.getMuscleGroup());
+        exerciseRepository.save(exercise);
     }
 }
